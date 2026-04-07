@@ -51,7 +51,7 @@ export const tokenService = {
   },
 
   hasValidAccessToken: () => {
-    const token = tokenService.getAccessToken();
+    const token = tokenService.getRefreshToken();
     return !!token && !tokenService.isTokenExpired(token);
   },
 };

@@ -58,7 +58,11 @@ const LoginForm = () => {
 
       <br />
 
-      <button type="submit" disabled={isLoadingAction}>
+      <button
+        type="submit"
+        disabled={isLoadingAction}
+        className="cursor-pointer font-bold text-sky-800"
+      >
         {isLoadingAction ? "Signing in..." : "Sign In"}
       </button>
     </form>

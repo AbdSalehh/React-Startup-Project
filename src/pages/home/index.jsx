@@ -3,7 +3,11 @@ import { RBACGuard } from "@/features/ui";
 import { ROLES } from "@/shared/lib/rbac";
 
 export const HomePage = () => {
-  const { user } = useAuthStore();
+  const { user, getMe } = useAuthStore();
+
+  const handleGetMe = async () => {
+    await getMe();
+  };
 
   return (
     <div>
@@ -38,6 +42,8 @@ export const HomePage = () => {
           </tr>
         </tbody>
       </table>
+
+      <button onClick={handleGetMe}>Get Me</button>
 
       <hr />
 

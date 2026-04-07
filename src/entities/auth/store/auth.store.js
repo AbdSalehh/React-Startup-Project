@@ -77,9 +77,9 @@ export const useAuthStore = create((set, get) => ({
 
   logout: async () => {
     try {
-      await authApi.logout();
       tokenService.clearTokens();
       set({ user: null, error: null });
+      // await authApi.logout();
     } catch (error) {
       tokenService.clearTokens();
       set({ user: null, error: null });

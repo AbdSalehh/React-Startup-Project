@@ -15,11 +15,7 @@ export const ProtectedRoute = ({
   requiredPermissions,
   fallback,
 }) => {
-  const { isAuthenticated, user, isLoading } = useAuthStore();
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  const { isAuthenticated, user } = useAuthStore();
 
   if (!isAuthenticated()) {
     tokenService.clearTokens();
