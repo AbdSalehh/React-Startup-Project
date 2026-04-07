@@ -1,10 +1,10 @@
-import { HomePage } from '@/pages/home';
-import { DefaultLayout } from '@/shared/layouts';
-import { ProtectedRoute } from '@/features/auth';
+import { HomePage } from "@/pages/home";
+import { DefaultLayout } from "@/shared/layouts";
+import { ProtectedRoute } from "@/features/ui";
 
 const homeRoutes = [
   {
-    path: '/',
+    path: "/",
     element: (
       <ProtectedRoute>
         <DefaultLayout>

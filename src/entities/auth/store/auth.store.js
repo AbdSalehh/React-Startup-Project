@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { authApi } from "../api/auth.api";
 import { tokenService } from "@/shared/lib/tokenService";
+import { getUserFromToken } from "@/shared/lib/jwtDecode";
+import { toast } from "sonner";
 
 export const useAuthStore = create((set, get) => ({
   user: null,
@@ -17,18 +19,10 @@ export const useAuthStore = create((set, get) => ({
 
       tokenService.setTokens(data.access_token, data.refresh_token);
 
-      set({
-        user: {
-          id: data.user.id,
-          username: data.user.username,
-          name: data.user.name,
-          nickname: data.user.nickname,
-          email: data.user.email,
-          created_at: data.user.created_at,
-          updated_at: data.user.updated_at,
-        },
-        isLoadingAction: false,
-      });
+      const user = getUserFromToken(data.access_token);
+      set({ user, isLoadingAction: false });
+      toast.success(response.data.message || "Login berhasil! Selamat datang.");
+
       return data;
     } catch (error) {
       const message = error.response?.data?.message || "Login failed";
@@ -64,22 +58,32 @@ export const useAuthStore = create((set, get) => ({
   },
 
   initializeAuth: async () => {
-    if (!tokenService.getAccessToken() && !tokenService.getRefreshToken()) {
+    const accessToken = tokenService.getAccessToken();
+    const refreshToken = tokenService.getRefreshToken();
+
+    if (!accessToken && !refreshToken) {
       set({ isInitialized: true });
       return;
     }
+
     try {
-      await get().getMe();
-    } catch {
-      // interceptor handles redirect on 401 refresh failure
-    } finally {
+      const user = getUserFromToken(accessToken || refreshToken);
+      set({ user, isInitialized: true });
+    } catch (error) {
+      console.error("Failed to initialize auth:", error);
       set({ isInitialized: true });
     }
   },
 
-  logout: () => {
-    tokenService.clearTokens();
-    set({ user: null, error: null });
+  logout: async () => {
+    try {
+      await authApi.logout();
+      tokenService.clearTokens();
+      set({ user: null, error: null });
+    } catch (error) {
+      tokenService.clearTokens();
+      set({ user: null, error: null });
+    }
   },
 
   clearError: () => set({ error: null }),

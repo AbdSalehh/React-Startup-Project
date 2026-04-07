@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "sonner";
 import { tokenService } from "@/shared/lib/tokenService";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -75,9 +76,8 @@ axiosInstance.interceptors.response.use(
         },
       );
 
-      const { access_token, refresh_token: newRefreshToken } =
-        response.data.data;
-      tokenService.setTokens(access_token, newRefreshToken);
+      const { access_token } = response.data.data;
+      tokenService.setTokens(access_token, undefined);
 
       axiosInstance.defaults.headers.common["Authorization"] =
         `Bearer ${access_token}`;
@@ -88,7 +88,10 @@ axiosInstance.interceptors.response.use(
     } catch (refreshError) {
       processQueue(refreshError, null);
       tokenService.clearTokens();
-      // window.location.href = "/login";
+      toast.error("Sesi Anda telah berakhir. Silakan login kembali.");
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 1500);
       return Promise.reject(refreshError);
     } finally {
       isRefreshing = false;

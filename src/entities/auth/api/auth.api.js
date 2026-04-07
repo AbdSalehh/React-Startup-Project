@@ -10,13 +10,23 @@ export const authApi = {
   },
 
   register: async (userData) => {
-    const response = await axiosInstance.post("/users/add", userData);
+    const response = await axiosInstance.post("/auth/register", {
+      name: userData.name,
+      username: userData.username,
+      nickname: userData.nickname,
+      password: userData.password,
+    });
+    return response.data;
+  },
+
+  logout: async () => {
+    const response = await axiosInstance.post("/auth/logout");
     return response.data;
   },
 
   getMe: async () => {
     const response = await axiosInstance.get("/me");
-    return response.data;
+    return response.data.data;
   },
 
   refreshToken: async (refreshToken) => {

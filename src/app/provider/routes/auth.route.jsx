@@ -1,10 +1,10 @@
-import { LoginPage } from '@/pages/login';
-import { RegisterPage } from '@/pages/register';
-import { GuestRoute } from '@/features/auth';
+import { LoginPage } from "@/pages/login";
+import { RegisterPage } from "@/pages/register";
+import { GuestRoute } from "@/features/ui";
 
 const authRoutes = [
   {
-    path: '/login',
+    path: "/login",
     element: (
       <GuestRoute>
         <LoginPage />
@@ -12,7 +12,7 @@ const authRoutes = [
     ),
   },
   {
-    path: '/register',
+    path: "/register",
     element: (
       <GuestRoute>
         <RegisterPage />
