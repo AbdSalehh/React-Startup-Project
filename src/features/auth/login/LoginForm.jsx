@@ -25,10 +25,11 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="username">Username</label>
-        <br />
+        <label htmlFor="username" className="mb-1 block text-sm font-medium">
+          Username
+        </label>
         <input
           id="username"
           name="username"
@@ -37,14 +38,14 @@ const LoginForm = () => {
           onChange={handleChange}
           required
           placeholder="Enter your username"
+          className="w-full rounded-lg border border-neutral-300 px-4 py-2 transition-all outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
-      <br />
-
       <div>
-        <label htmlFor="password">Password</label>
-        <br />
+        <label htmlFor="password" className="mb-1 block text-sm font-medium">
+          Password
+        </label>
         <input
           id="password"
           name="password"
@@ -53,15 +54,16 @@ const LoginForm = () => {
           onChange={handleChange}
           required
           placeholder="Enter your password"
+          className="w-full rounded-lg border border-neutral-300 px-4 py-2 transition-all outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
-      <br />
+      {error && <p className="text-sm font-medium text-red-600">{error}</p>}
 
       <button
         type="submit"
         disabled={isLoadingAction}
-        className="cursor-pointer font-bold text-sky-800"
+        className="w-full rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-neutral-400"
       >
         {isLoadingAction ? "Signing in..." : "Sign In"}
       </button>

@@ -1,4 +1,5 @@
 import { Navigate } from "react-router";
+import PropTypes from "prop-types";
 import { useAuthStore } from "@/entities/auth";
 import { canAccess } from "@/shared/lib/rbac";
 import { tokenService } from "@/shared/lib/tokenService";
@@ -39,4 +40,18 @@ export const ProtectedRoute = ({
   }
 
   return <>{children}</>;
+};
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+  redirectTo: PropTypes.string,
+  requiredRoles: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  requiredPermissions: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  fallback: PropTypes.node,
 };

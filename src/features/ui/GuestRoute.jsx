@@ -1,4 +1,5 @@
 import { Navigate } from "react-router";
+import PropTypes from "prop-types";
 import { useAuthStore } from "@/entities/auth";
 
 /**
@@ -14,4 +15,8 @@ export const GuestRoute = ({ children }) => {
   }
 
   return <>{children}</>;
+};
+
+GuestRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };

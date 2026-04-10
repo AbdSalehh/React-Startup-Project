@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useAuthStore } from "@/entities/auth";
 import { canAccess } from "@/shared/lib/rbac";
 
@@ -20,4 +21,17 @@ export const RBACGuard = ({
   }
 
   return <>{children}</>;
+};
+
+RBACGuard.propTypes = {
+  children: PropTypes.node.isRequired,
+  requiredRoles: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  requiredPermissions: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  fallback: PropTypes.node,
 };

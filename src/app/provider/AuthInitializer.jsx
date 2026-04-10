@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { useAuthStore } from '@/entities/auth';
+import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { useAuthStore } from "@/entities/auth";
 
 export const AuthInitializer = ({ children }) => {
   const { initializeAuth } = useAuthStore();
@@ -13,4 +14,8 @@ export const AuthInitializer = ({ children }) => {
   }, [initializeAuth]);
 
   return <>{children}</>;
+};
+
+AuthInitializer.propTypes = {
+  children: PropTypes.node.isRequired,
 };

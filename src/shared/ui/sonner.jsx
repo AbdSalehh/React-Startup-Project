@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   CircleCheckIcon,
   InfoIcon,
@@ -44,6 +45,12 @@ const Toaster = ({ ...props }) => {
       {...props}
     />
   );
+};
+
+Toaster.propTypes = {
+  position: PropTypes.string,
+  expand: PropTypes.bool,
+  richColors: PropTypes.bool,
 };
 
 export { Toaster };
