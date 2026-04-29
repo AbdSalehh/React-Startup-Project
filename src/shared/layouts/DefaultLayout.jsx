@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router";
-import { Sun, Moon, LogOut } from "lucide-react";
+import { Sun, Moon, LogOut, Home, MessageSquare } from "lucide-react";
 import { useAuthStore } from "@/entities/auth";
 import { useTheme } from "@/shared/hooks";
 
@@ -26,13 +26,23 @@ export const DefaultLayout = ({ children }) => {
         <div>
           <h2 className="mb-4 text-xl font-bold">Admin Panel</h2>
           <nav>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               <li>
                 <a
                   href="/"
-                  className="block rounded-lg px-3 py-2 transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                  className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700"
                 >
-                  Home
+                  <Home size={16} />
+                  <span>Home</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/chat"
+                  className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                >
+                  <MessageSquare size={16} />
+                  <span>AI Chat</span>
                 </a>
               </li>
             </ul>
