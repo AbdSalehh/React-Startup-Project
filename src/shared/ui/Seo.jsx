@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 
 const SITE_NAME = "React Capstone";
 const BASE_URL = "https://react-startup-project.vercel.app";
-const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.webp`;
+const DEFAULT_OG_IMAGE = `${BASE_URL}/og_image.webp`;
 
 export const Seo = ({
   title,
