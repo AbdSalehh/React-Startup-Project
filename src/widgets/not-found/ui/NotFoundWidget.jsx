@@ -1,8 +1,14 @@
 import { Link } from "react-router";
+import { Seo } from "@/shared/ui/Seo";
 
 export const NotFoundWidget = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-neutral-50 p-4 text-center">
+      <Seo
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist."
+        noIndex
+      />
       <p className="text-6xl font-bold text-indigo-600">404</p>
       <h1 className="mt-4 text-2xl font-bold text-neutral-800">
         Page Not Found

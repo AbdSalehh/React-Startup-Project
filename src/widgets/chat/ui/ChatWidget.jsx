@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useChatStore } from "@/entities/chat";
 import { MessageBubble } from "@/features/chat";
+import { Seo } from "@/shared/ui/Seo";
 
 const MODELS = [
   { value: "openai/gpt-oss-120b:free", label: "GPT OSS 120B (Default)" },
@@ -62,6 +63,12 @@ export const ChatWidget = () => {
 
   return (
     <div className="flex h-[calc(100vh-2rem)] flex-col overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+      <Seo
+        title="AI Chat"
+        description="Chat with AI models powered by OpenRouter. Choose from multiple free and paid models."
+        canonical="/chat"
+        noIndex
+      />
       {/* Header */}
       <div className="flex shrink-0 items-center justify-between border-b border-neutral-200 bg-white px-5 py-3 dark:border-neutral-700 dark:bg-neutral-800">
         <div className="flex items-center gap-3">

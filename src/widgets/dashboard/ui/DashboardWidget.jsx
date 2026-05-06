@@ -1,6 +1,7 @@
 import { useAuthStore } from "@/entities/auth";
 import { RBACGuard } from "@/features/ui";
 import { ROLES } from "@/shared/lib/rbac";
+import { Seo } from "@/shared/ui/Seo";
 
 export const DashboardWidget = () => {
   const { user, getMe } = useAuthStore();
@@ -11,6 +12,12 @@ export const DashboardWidget = () => {
 
   return (
     <div className="space-y-6">
+      <Seo
+        title="Dashboard"
+        description="Your personal dashboard. View your profile, manage settings, and access features based on your role."
+        canonical="/"
+        noIndex
+      />
       <div>
         <h1 className="mb-2 text-3xl font-bold">
           Welcome back{user ? `, ${user.nickname || user.name}!` : "!"}
